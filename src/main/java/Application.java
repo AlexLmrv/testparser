@@ -5,6 +5,8 @@ import org.jsoup.nodes.Document;
 import java.io.IOException;
 import java.util.Map;
 
+import static java.util.Collections.reverseOrder;
+
 public class Application {
 
 
@@ -15,7 +17,9 @@ public class Application {
         String[] conditions = conditionHandler.getConditions(args);
         Document document = Parser.getDocument();
         Map<String, Long> stats = ParseHandler.getStats(conditions, document);
-        stats.forEach((word, count) -> System.out.println("Слово \""+ word + "\" встречается " + count + " раз."));
-
+        stats.entrySet()
+                .stream()
+                .sorted(reverseOrder(Map.Entry.comparingByValue()))
+                .forEach((entry) -> System.out.println("Слово \""+ entry.getKey() + "\" встречается " + entry.getValue() + " раз."));
     }
 }
