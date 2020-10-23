@@ -10,6 +10,7 @@ import java.nio.file.Path;
 public class FileConditionHandler implements ConditionHandler {
     public String[] getConditions(String[] args) {
 
+//        составляем список искомых слов из файла
         try {
             return Files.readString(Path.of(args[1]), StandardCharsets.UTF_8).split("([ \\n])");
         } catch (IOException e) {

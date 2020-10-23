@@ -8,6 +8,11 @@ public class Parser {
 
     private static final String URL = "https://news.yandex.ru/computers.html";
 
+    /**
+     * Метод скачивает и возвращает веб-страницу
+     * @return
+     * @throws IOException
+     */
     public static Document getDocument() throws IOException {
         return Jsoup.parse(new URL(URL), 10000);
     }
